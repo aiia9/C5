@@ -1,0 +1,66 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApp1
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Часть 1");
+            Box<int> intBox = new Box<int>();
+            intBox.Put(42);
+            Box<string> stringBox = new Box<string>();
+            stringBox.Put("Hello");
+            Console.WriteLine($"Число в коробке: {intBox.Get()}");
+            Console.WriteLine($"Строка в коробке: {stringBox.Get()}");
+            Console.WriteLine("Часть 2");
+            int a = 5;
+            int b = 10;
+            Utils.Swap(ref a, ref b);
+            Console.WriteLine($"Числа после Swap: {a}, {b}");
+            string x = "Hello";
+            string y = "World";
+            Utils.Swap(ref x, ref y);
+            Console.WriteLine($"Строки после Swap: {x}, {y}");
+            Console.WriteLine("Часть 3");
+            Pair<int, string> pair = new Pair<int, string>(5, "Hello");
+            Console.WriteLine($"Первое значение: {pair.Item1}, Второе значение: {pair.Item2}");
+
+        }
+        public class Box<T>
+        {
+            private T _item;
+            public void Put(T item)
+            {
+                _item = item;
+            }
+            public T Get()
+            {
+                return _item;
+            }
+        }
+        public static class Utils
+        {
+            public static void Swap<T>(ref T a, ref T b)
+            {
+                T temp = a;
+                a = b;
+                b = temp;
+            }
+        }
+        public class Pair<T1, T2>
+        {
+            public T1 Item1 { get; set; }
+            public T2 Item2 { get; set; }
+            public Pair(T1 item1, T2 item2)
+            {
+                Item1 = item1;
+                Item2 = item2;
+            }
+        }
+    }
+}
